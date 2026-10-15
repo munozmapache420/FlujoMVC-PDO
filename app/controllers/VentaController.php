@@ -19,58 +19,39 @@ class VentaController {
     require_once __DIR__ . '/../views/ventas/index.php';
     }
 
-    public function productos() {
-        return (new Producto())->leer();
+        public function crear() {
+     require_once __DIR__ . '/../views/ventas/crear.php';
     }
 
-    public function clientes() {
-        return (new Cliente())->leer();
-    }
+public function guardar() {
 
-    public function detalle($ventaId) {
-        return (new DetalleVenta())->leerPorVenta($ventaId);
-    }
+    $fecha = $_POST['fecha'];
+    $total = $_POST['total'];
+    $cliente_id = $_POST['cliente_id'];
+    $usuario_id = $_POST['usuario_id'];
 
-    public function registrarVentaCompleta($datos) {
-        $conn = $this->venta->conn;
-        try {
-            $conn->beginTransaction();
+    $venta = new Venta();
 
-            $ventaId = $this->venta->registrarVenta([
-                'cliente_id' => $datos['cliente_id'] ?? null,
-                'usuario_id' => $datos['usuario_id'],
-                'fecha'      => date('Y-m-d'),
-                'total'      => 0
-            ]);
+    $resultado = $venta->guardar(
+        $fecha,
+        $total,
+        $cliente_id,
+        $usuario_id
+    );
 
-            $totalVenta = 0;
-            foreach ($datos['productos'] as $item) {
-                $detalle = new DetalleVenta();
-                $detalle->asignarProducto((int)$item['id']);
-                $detalle->actualizarCantidad((int)$item['cantidad']);
-                $detalle->fechaRegistro = date('Y-m-d');
-                $detalle->guardar($ventaId);
-                $totalVenta += $detalle->subtotal;
-            }
+    if ($resultado) {
+        echo "Venta guardada correctamente";
+        $this->index();
 
-            $conn->prepare("UPDATE venta SET total = :total WHERE id = :id")
-                 ->execute([':total' => $totalVenta, ':id' => $ventaId]);
+    } else {
+        echo "Error al guardar la venta";
+    }}
 
-            if (!empty($datos['metodo_pago'])) {
-                $metodoPago = new MetodoPago();
-                $metodoPago->registrarVenta($ventaId, $datos['metodo_pago']);
-            }
-
-            $conn->commit();
-            return $ventaId;
-        } catch (Exception $e) {
-            $conn->rollBack();
-            echo "<script>alert('Error al registrar la venta: " . addslashes($e->getMessage()) . "'); window.history.back();</script>";
-            exit;
-        }
-    }
+    
 
     public function anular($id) {
         return $this->venta->anularVenta((int)$id);
     }
+
+
 }

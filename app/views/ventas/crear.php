@@ -1,21 +1,42 @@
 <?php
-session_start();
-require_once __DIR__ . '/../../controllers/VentaController.php';
+require_once __DIR__ . '/../../../app/controllers/VentaController.php';
+?>
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $controller = new VentaController();
+<body>
 
-    // Si no hay sesión de usuario iniciada, se usa el primer usuario del sistema.
-    $usuarioId = $_SESSION['usuario_id'] ?? 1;
+    <div class="users-form">
 
-    $controller->registrarVentaCompleta([
-        'cliente_id'  => !empty($_POST['cliente_id']) ? (int)$_POST['cliente_id'] : null,
-        'usuario_id'  => $usuarioId,
-        'metodo_pago' => $_POST['metodo_pago'] ?? 'Efectivo',
-        'productos'   => [
-            ['id' => (int)$_POST['producto_id'], 'cantidad' => (int)$_POST['cantidad']]
-        ]
-    ]);
-}
-header('Location: index.php');
-exit;
+        <form action="/ventas" method="POST" style="text-align: center;">
+
+            <h2>Crear Venta</h2>
+
+            <label for="fecha">Fecha:</label><br>
+            <input type="date" id="fecha" name="fecha" required
+                   style="background-color:#FFFDD0;"><br>
+
+            <label for="total">Total:</label><br>
+            <input type="number" id="total" name="total"
+                   placeholder="Total de la venta" min="0" step="0.01"
+                   required style="background-color:#FFFDD0;"><br>
+
+            <label for="cliente_id">ID del Cliente:</label><br>
+            <input type="number" id="cliente_id" name="cliente_id"
+                   placeholder="ID del cliente" min="1"
+                   required style="background-color:#FFFDD0;"><br>
+
+            <label for="usuario_id">ID del Usuario:</label><br>
+            <input type="number" id="usuario_id" name="usuario_id"
+                   placeholder="ID del usuario" min="1"
+                   required style="background-color:#FFFDD0;"><br>
+
+            <br>
+
+            <button type="submit" style="background-color:#F0F8FF;">
+                Agregar Venta
+            </button>
+
+        </form>
+
+    </div>
+
+</body>

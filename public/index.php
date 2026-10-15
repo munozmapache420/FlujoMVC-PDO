@@ -70,6 +70,14 @@ if ($method === 'POST' && $uri === '/usuarios'){
     $usuarioController = new UsuarioController();
     $usuarioController->guardar();
 }
+if ($method === 'GET' && $uri === '/ventas/crear'){
+    $ventaController = new VentaController();
+    $ventaController->crear();
+}
+if ($method === 'POST' && $uri === '/ventas'){
+    $ventaController = new Venta();
+    $ventaController->guardar();
+}
 
 ?>
 
@@ -88,6 +96,8 @@ if ($method === 'POST' && $uri === '/usuarios'){
 <a href="/categorias/crear">creacionCategoria</a>
 <br>
 <a href="/usuarios/crear">creacionUsuario</a>
+<br>
+<a href="/ventas/crear">creacionVentas</a>
 
 
 
