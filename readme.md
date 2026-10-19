@@ -10,3 +10,6 @@ se definen estructuras basicas para su division de requisitos views y formulario
 ## 08/
 ## 15/10/2026
 se actualiza los modulos ademas de las correciones de errores para su funcionamiento 
+
+## 19/10/2026 
+se crea el formulario de editar producto con la estuctura mvc
