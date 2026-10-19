@@ -43,23 +43,11 @@ class ProductoController {
     
     }
 
-
-
-
-    public function eliminar($id) {
-        try {
-            return $this->producto->eliminar((int)$id);
-        } catch (PDOException $e) {
-            if ($e->getCode() == 23000) {
-                echo "<script>
-                    alert('No se puede eliminar este producto porque está asociado a ventas o movimientos.');
-                    window.location.href = 'index.php';
-                </script>";
-                exit;
-            }
-            throw $e;
-        }
+    public function editar(){
+        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+        $mProducto = new Producto();
+        $producto= $mProducto->getById($id);
+        require_once __DIR__ . "/../views/productos/editar.php";
     }
 
-    
 }

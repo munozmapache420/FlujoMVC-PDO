@@ -107,26 +107,26 @@
 
                         <td>
                             $<?= number_format(
-                                (float)$p['precio_compra'],
-                                2,
-                                ',',
-                                '.'
-                            ) ?>
+                                    (float)$p['precio_compra'],
+                                    2,
+                                    ',',
+                                    '.'
+                                ) ?>
                         </td>
 
 
                         <td>
                             $<?= number_format(
-                                (float)$p['precio_venta'],
-                                2,
-                                ',',
-                                '.'
-                            ) ?>
+                                    (float)$p['precio_venta'],
+                                    2,
+                                    ',',
+                                    '.'
+                                ) ?>
                         </td>
 
 
                         <td>
-                            <?=($p['stock']) ?>
+                            <?= ($p['stock']) ?>
                         </td>
 
 
@@ -141,23 +141,7 @@
 
 
                         <td>
-
-                            <a
-                                href="editar.php?id=<?= urlencode($p['id']) ?>"
-                                class="users-table--edit"
-                            >
-                                Editar
-                            </a>
-
-
-                            <a
-                                href="eliminar.php?id=<?= urlencode($p['id']) ?>"
-                                class="users-table--delete"
-                                onclick="return confirm('¿Seguro que deseas eliminar este producto?')"
-                            >
-                                Eliminar
-                            </a>
-
+                          <a href="/productos/editar?id=<?= $p['id'] ?>">editar</a>
                         </td>
 
                     </tr>

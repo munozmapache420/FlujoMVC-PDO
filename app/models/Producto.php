@@ -44,6 +44,19 @@ public function guardar($nombre, $descripcion, $categoria_id, $id_inventario, $p
         $stmt = $this->conn->prepare("DELETE FROM producto WHERE id = :id");
         return $stmt->execute([':id' => $id]);
     }
-
+    public function getById($id)
+    {
+        try {
+            $sql = "SELECT * FROM producto WHERE id = :id LIMIT 1";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([':id' => $id]);
+        
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+            
+        } catch (PDOException $e) {
+            echo "Error al buscar el PRODUCTO con ID " . $id . " ERROR SQL: " . $e->getMessage();
+            return false;
+        }
+    }
 
 }
