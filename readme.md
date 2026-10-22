@@ -13,3 +13,6 @@ se actualiza los modulos ademas de las correciones de errores para su funcionami
 
 ## 19/10/2026 
 se crea el formulario de editar producto con la estuctura mvc
+
+## 22/10/2026
+se crea formularios de edicion o actualizacionde datos mediante la vida editar enlazandola con la estructura mvc
