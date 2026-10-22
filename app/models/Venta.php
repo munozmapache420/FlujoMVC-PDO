@@ -64,4 +64,46 @@ class Venta {
         $stmt->execute([':id' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function getById($id)
+    {
+        try {
+            $sql = "SELECT * FROM venta WHERE id = :id";
+
+            $consulta = $this->conn->prepare($sql);
+            $consulta->bindParam(':id', $id);
+            $consulta->execute();
+            return $consulta->fetch(PDO::FETCH_OBJ);
+
+        } catch (PDOException $e) {
+            echo "Error al buscar la VENTA con ID: " . $e->getMessage();
+        }
+    }
+
+    public function actualizar($id, $fecha, $total, $cliente_id, $usuario_id)
+    {
+        try {
+            $sql = "UPDATE venta SET
+                    fecha = :fecha,
+                    total = :total,
+                    cliente_id = :cliente_id,
+                    usuario_id = :usuario_id
+                WHERE id = :id";
+
+            $stmt = $this->conn->prepare($sql);
+
+            return $stmt->execute([
+            ':id' => $id,
+            ':fecha' => $fecha,
+            ':total' => $total,
+            ':cliente_id' => $cliente_id,
+            ':usuario_id' => $usuario_id
+            ]);
+
+        } catch (PDOException $e) {
+            echo "Error al actualizar la VENTA: " . $e->getMessage();
+            return false;
+        }
+    }
+
 }

@@ -25,15 +25,15 @@
 </nav>
 
 
-<h1>Gestión de Categorías</h1>
+<h1 style="text-align:center;color:red">Gestión de Categorías</h1>
 
 
-<h2>Categorías Registradas</h2>
+<h2 style="background-color: lightskyblue;">Categorías Registradas</h2>
 
 
 <?php if (!empty($categorias)): ?>
 
-    <p>
+    <p style="background-color: lightskyblue;">
         Total de categorías:
         <strong><?= count($categorias) ?></strong>
     </p>
@@ -96,7 +96,7 @@
                         <td>
 
                             <a
-                                href="editar.php?id=<?= urlencode($c['id']) ?>"
+                                href="/categorias/editar?id=<?= urlencode($c['id']) ?>"
                                 class="users-table--edit"
                             >
                                 Editar

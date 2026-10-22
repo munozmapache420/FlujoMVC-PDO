@@ -58,5 +58,43 @@ public function guardar($nombre, $descripcion, $precio)
         ]);
     }
 
+    public function getById($id)
+    {
+        try {
+            $sql = "SELECT * FROM categorias WHERE id = :id";
+
+            $consulta = $this->conn->prepare($sql);
+            $consulta->bindParam(':id', $id);
+            $consulta->execute();
+            return $consulta->fetch(PDO::FETCH_OBJ);
+
+        } catch (PDOException $e) {
+            echo "Error al buscar la CATEGORIA con ID: " . $e->getMessage();
+        }
+    }
+
+    public function actualizar($id, $nombre, $descripcion, $precio)
+    {
+        try {
+            $sql = "UPDATE categorias SET
+                    nombre = :nombre,
+                    descripcion = :descripcion,
+                    precio = :precio
+                WHERE id = :id";
+
+            $stmt = $this->conn->prepare($sql);
+
+            return $stmt->execute([
+            ':id' => $id,
+            ':nombre' => $nombre,
+            ':descripcion' => $descripcion,
+            ':precio' => $precio
+            ]);
+
+        } catch (PDOException $e) {
+            echo "Error al actualizar la CATEGORIA: " . $e->getMessage();
+            return false;
+        }
+    }
 
 }

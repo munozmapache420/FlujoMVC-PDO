@@ -36,6 +36,53 @@ public function index()
     }
 }
 
+    public function editar() {
 
+        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+        if (!$id) {
+            header('Location: /categorias');
+            exit;
+        }
+
+        $categoria = $this->categoria->getById($id);
+
+        if (!$categoria) {
+            echo "Categoría no encontrado";
+            return;
+        }
+
+        require_once __DIR__ . '/../views/categorias/editar.php';
+    }
+
+    public function actualizar() {
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $id = $_POST['id'] ?? null;
+            $nombre = $_POST['nombre'] ?? '';
+            $descripcion = $_POST['descripcion'] ?? '';
+            $precio = $_POST['precio'] ?? 0;
+
+            if (!$id) {
+                echo "Error: falta el ID";
+                return;
+            }
+
+            $resultado = $this->categoria->actualizar(
+                $id,
+                $nombre,
+                $descripcion,
+                $precio
+            );
+
+            if ($resultado) {
+                header('Location: /categorias');
+                exit;
+            } else {
+                echo "Error al actualizar";
+            }
+        }
+    }
 
 }

@@ -53,5 +53,55 @@ public function guardar() {
         return $this->venta->anularVenta((int)$id);
     }
 
+    public function editar() {
+
+        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+        if (!$id) {
+            header('Location: /ventas');
+            exit;
+        }
+
+        $venta = $this->venta->getById($id);
+
+        if (!$venta) {
+            echo "Venta no encontrado";
+            return;
+        }
+
+        require_once __DIR__ . '/../views/ventas/editar.php';
+    }
+
+    public function actualizar() {
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $id = $_POST['id'] ?? null;
+            $fecha = $_POST['fecha'] ?? '';
+            $total = $_POST['total'] ?? 0;
+            $cliente_id = $_POST['cliente_id'] ?? null;
+            $usuario_id = $_POST['usuario_id'] ?? null;
+
+            if (!$id) {
+                echo "Error: falta el ID";
+                return;
+            }
+
+            $resultado = $this->venta->actualizar(
+                $id,
+                $fecha,
+                $total,
+                $cliente_id,
+                $usuario_id
+            );
+
+            if ($resultado) {
+                header('Location: /ventas');
+                exit;
+            } else {
+                echo "Error al actualizar";
+            }
+        }
+    }
 
 }

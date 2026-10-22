@@ -10,7 +10,7 @@ class ClienteController {
 
 public function index()
 {
-    $cliente = $this->cliente->getAll();
+    $clientes = $this->cliente->getAll();
     require_once __DIR__ . '/../views/clientes/index.php';
 }
 
@@ -29,10 +29,6 @@ public function index()
         return $this->cliente->leerUno((int)$id);
     }
 
-    public function actualizar($id, $datos) {
-        return $this->cliente->ActualizarDatos((int)$id, $datos);
-    }
-
     public function eliminar($id) {
         try {
             return $this->cliente->eliminar((int)$id);
@@ -47,4 +43,54 @@ public function index()
             throw $e;
         }
     }
+
+    public function editar() {
+
+        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+        if (!$id) {
+            header('Location: /clientes');
+            exit;
+        }
+
+        $cliente = $this->cliente->getById($id);
+
+        if (!$cliente) {
+            echo "Cliente no encontrado";
+            return;
+        }
+
+        require_once __DIR__ . '/../views/clientes/editar.php';
+    }
+
+    public function actualizar() {
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $id = $_POST['id'] ?? null;
+            $nombre = $_POST['nombre'] ?? '';
+            $telefono = $_POST['telefono'] ?? '';
+            $direccion = $_POST['direccion'] ?? '';
+
+            if (!$id) {
+                echo "Error: falta el ID";
+                return;
+            }
+
+            $resultado = $this->cliente->actualizar(
+                $id,
+                $nombre,
+                $telefono,
+                $direccion
+            );
+
+            if ($resultado) {
+                header('Location: /clientes');
+                exit;
+            } else {
+                echo "Error al actualizar";
+            }
+        }
+    }
+
 }

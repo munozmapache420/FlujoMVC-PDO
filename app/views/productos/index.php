@@ -25,15 +25,15 @@
 </nav>
 
 
-<h1>Gestión de Productos</h1>
+<h1 style="text-align: center;color:red">Gestión de Productos</h1>
 
 
-<h2>Productos Registrados</h2>
+<h2 style="background-color:lightskyblue;">Productos Registrados</h2>
 
 
 <?php if (!empty($productos)): ?>
 
-    <p>
+    <p style="background-color: lightskyblue;">
         Total de productos:
         <strong><?= count($productos) ?></strong>
     </p>

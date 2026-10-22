@@ -1,7 +1,3 @@
-<?php
-require_once __DIR__ . '/../../controllers/ProductoController.php';
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -14,39 +10,54 @@ require_once __DIR__ . '/../../controllers/ProductoController.php';
 
 <body>
 
-    <h1>Editar Producto</h1>
+    <h1 style="color: red; text-align: center;background-color:darkgray;">Editar Producto</h1>
 
     <div class="users-form">
-        <form action="/productos/editar" method="POST">
+        <form action="/productos/actualizar" method="POST" border="2" style="text-align: center;background-color:darkgray;">
 
-            <input type="hidden" name="id" value="<?= $productos->id ?? '' ?>">
+            <input type="hidden" name="id" value="<?= $producto->id ?>" style="background-color: lightgoldenrodyellow;"><br>
 
-            <label for="nombre">Nombre</label>
-            <input type="text" name="nombre" value="<?= $productos->nombre ?? '' ?>" required>
+            <label for="nombre">Nombre</label><br>
+            <input type="text" name="nombre" value="<?= $producto->nombre  ?>" required style="background-color: lightgoldenrodyellow;"> <br>
 
-            <label for="descripcion">Descripción</label>
-            <input type="text"  name="descripcion" value="<?= $productos->descripcion ?? '' ?>">
+            <label for="descripcion">Descripción</label><br>
+            <input type="text" name="descripcion" value="<?= $producto->descripcion  ?>" style="background-color: lightgoldenrodyellow;"><br>
 
-            <label for="categoria">Categoría</label>
-            <input type="text" name="categoria" value="<?= $productos->categoria ?? '' ?>">
+            <label for="categoria_id">Categoría (ID)</label><br>
+            <input type="number" id="categoria_id" name="categoria_id" value="<?= $producto->categoria_id ?>" required style="background-color: lightgoldenrodyellow;"><br>
 
-            <label for="precio_compra">Precio de compra</label>
-            <input type="number" name="precio_compra" value="<?= $productos->precio_compra ?? '' ?>" required>
+            <label for="id_inventario">id_inventario</label><br>
+            <input type="text" name="id_inventario" value="<?= $producto->id_inventario ?>" style="background-color: lightgoldenrodyellow;"><br>
 
-            <label for="stock">Stock</label>
-            <input type="number" name="stock" value="<?= $productos->stock ?? '' ?>" required>
 
-            <label for="stock_minimo">Stock mínimo</label>
-            <input type="number" name="stock_minimo" value="<?= $productos->stock_minimo ?? '' ?>">
+            <label for="stock_minimo">Stock mínimo</label><br>
+            <input type="text" name="stock_minimo" value="<?= $producto->stock_minimo ?>" style="background-color: lightgoldenrodyellow;"><br>
 
-            <label for="estado">Estado</label>
-            <input type="text" name="estado" value="<?= $productos->estado ?? '' ?>">
+            <label for="estado:">estado</label><br>
+            <select id="estado" name="estado" default="activo" style="background-color: lightblue;">
+                <option value="activo"> Activo </option>
+                <option value="inactivo"> Inactivo </option>
+            </select><br>
 
-            <button type="submit">Guardar cambios</button>
+            <label for="precio_compra">Precio de compra</label><br>
+            <input type="text" name="precio_compra" value="<?= $producto->precio_compra  ?>" required style="background-color:lightgoldenrodyellow"><br>
 
+            <label for="precio_venta">precio_venta</label><br>
+            <input type="text" name="precio_venta" value="<?= $producto->precio_venta ?>" style="background-color: lightgoldenrodyellow;"><br>
+
+            <label for="stock">Stock</label><br>
+            <input type="text" name="stock" value="<?= $producto->stock  ?>" required style="background-color: lightgoldenrodyellow;"><br><br>
+
+            <section>
+            <button type="submit" style="color: red;">Guardar cambios</button>
+<br><br>
             <a href="/productos">Cancelar</a>
+            </section>
+
+
 
         </form>
+
     </div>
 
 </body>

@@ -38,15 +38,13 @@
 
     </nav>
 
-    <h1>Gestión de Ventas</h1>
+    <h1 style="text-align:center;color:red">Gestión de Ventas</h1>
 
-    <h2>Ventas Registradas</h2>
-
-    <a href="crear.php">Crear Venta</a>
+    <h2 style="background-color: lightskyblue;">Ventas Registradas</h2>
 
     <?php if (!empty($ventas)): ?>
 
-        <p>
+        <p style="background-color: lightskyblue;">
             Total de ventas:
             <strong><?= count($ventas) ?></strong>
         </p>
@@ -95,7 +93,7 @@
                             <td>
 
                                 <a
-                                    href="editar.php?id=<?= $v['id'] ?>"
+                                    href="/ventas/editar?id=<?= $v['id'] ?>"
                                     class="users-table--edit">
                                     Editar
                                 </a>

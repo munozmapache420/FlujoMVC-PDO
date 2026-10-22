@@ -43,15 +43,15 @@
 </nav>
 
 
-<h1>Gestión de Usuarios</h1>
+<h1 style="text-align: center;color:red">Gestión de Usuarios</h1>
 
 
-<h2>Usuarios Registrados</h2>
+<h2 style="background-color: lightskyblue;">Usuarios Registrados</h2>
 
 
 <?php if (!empty($usuarios)): ?>
 
-    <p>
+    <p style="background-color: lightskyblue;">
         Total de usuarios:
         <strong><?= count($usuarios) ?></strong>
     </p>
@@ -123,7 +123,7 @@
                         <td>
 
                             <a
-                                href="editar.php?id=<?= $u['id'] ?>"
+                                href="/usuarios/editar?id=<?= $u['id'] ?>"
                                 class="users-table--edit"
                             >
                                 Editar

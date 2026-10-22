@@ -68,4 +68,44 @@ class Cliente {
         $stmt = $this->conn->prepare("DELETE FROM " . $this->table_name . " WHERE id = :id");
         return $stmt->execute([':id' => $id]);
     }
+
+    public function getById($id)
+    {
+        try {
+            $sql = "SELECT * FROM clientes WHERE id = :id";
+
+            $consulta = $this->conn->prepare($sql);
+            $consulta->bindParam(':id', $id);
+            $consulta->execute();
+            return $consulta->fetch(PDO::FETCH_OBJ);
+
+        } catch (PDOException $e) {
+            echo "Error al buscar el CLIENTE con ID: " . $e->getMessage();
+        }
+    }
+
+    public function actualizar($id, $nombre, $telefono, $direccion)
+    {
+        try {
+            $sql = "UPDATE clientes SET
+                    nombre = :nombre,
+                    telefono = :telefono,
+                    direccion = :direccion
+                WHERE id = :id";
+
+            $stmt = $this->conn->prepare($sql);
+
+            return $stmt->execute([
+            ':id' => $id,
+            ':nombre' => $nombre,
+            ':telefono' => $telefono,
+            ':direccion' => $direccion
+            ]);
+
+        } catch (PDOException $e) {
+            echo "Error al actualizar el CLIENTE: " . $e->getMessage();
+            return false;
+        }
+    }
+
 }

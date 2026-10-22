@@ -50,19 +50,6 @@ class Usuario {
 
 
 
-    public function actualizar($id, $datos) {
-        $query = "UPDATE usuarios SET nombre = :nombre, correo = :correo,
-                  password = :password, cargo = :cargo, rol_id = :rol_id WHERE id = :id";
-        $stmt = $this->conn->prepare($query);
-        return $stmt->execute([
-            ':id'       => $id,
-            ':nombre'   => $datos['nombre'],
-            ':correo'   => $datos['correo'],
-            ':password' => $datos['password'],
-            ':cargo'    => $datos['cargo'] ?? null,
-            ':rol_id'   => $datos['rol_id'] ?? null
-        ]);
-    }
 
     public function eliminar($id) {
         $query = "DELETE FROM usuarios WHERE id = :id";
@@ -70,5 +57,49 @@ class Usuario {
         return $stmt->execute([':id' => $id]);
     }
 
+    public function getById($id)
+    {
+        try {
+            $sql = "SELECT * FROM usuarios WHERE id = :id";
+
+            $consulta = $this->conn->prepare($sql);
+            $consulta->bindParam(':id', $id);
+            $consulta->execute();
+            return $consulta->fetch(PDO::FETCH_OBJ);
+
+        } catch (PDOException $e) {
+            echo "Error al buscar el USUARIO con ID: " . $e->getMessage();
+        }
+    }
+
+    public function actualizar($id, $nombre, $correo, $password, $cargo, $activo, $rol_id)
+    {
+        try {
+            $sql = "UPDATE usuarios SET
+                    nombre = :nombre,
+                    correo = :correo,
+                    password = :password,
+                    cargo = :cargo,
+                    activo = :activo,
+                    rol_id = :rol_id
+                WHERE id = :id";
+
+            $stmt = $this->conn->prepare($sql);
+
+            return $stmt->execute([
+            ':id' => $id,
+            ':nombre' => $nombre,
+            ':correo' => $correo,
+            ':password' => $password,
+            ':cargo' => $cargo,
+            ':activo' => $activo,
+            ':rol_id' => $rol_id
+            ]);
+
+        } catch (PDOException $e) {
+            echo "Error al actualizar el USUARIO: " . $e->getMessage();
+            return false;
+        }
+    }
 
 }

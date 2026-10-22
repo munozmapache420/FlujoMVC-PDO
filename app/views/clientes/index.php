@@ -1,9 +1,3 @@
-<?php
-require_once __DIR__ . '/../../controllers/ClienteController.php';
-
-$controller = new ClienteController();
-$clientes = $controller->index();
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -22,7 +16,7 @@ $clientes = $controller->index();
         <a href="../ventas/index.php">Ventas</a>
     </nav>
 
-    <h1>Gestión de Clientes</h1>
+    <h1 style="text-align: center;color:red">Gestión de Clientes</h1>
 
     <div class="users-form">
         <form action="crear.php" method="POST">
@@ -34,10 +28,10 @@ $clientes = $controller->index();
         </form>
     </div>
 
-    <h2>Clientes Registrados</h2>
+    <h2 style="background-color: lightskyblue;">Clientes Registrados</h2>
 
     <div class="users-table">
-        <table>
+        <table border="2">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -58,7 +52,7 @@ $clientes = $controller->index();
                             <td><?= ($c['direccion'] ?? '') ?></td>
                             <td><?= ($c['registro_unico']) ?></td>
                             <td>
-                                <a href="editar.php?id=<?= $c['id'] ?>" class="users-table--edit">Editar</a>
+                                <a href="/clientes/editar?id=<?= $c['id'] ?>" class="users-table--edit">Editar</a>
                                 <a href="eliminar.php?id=<?= $c['id'] ?>" class="users-table--delete" onclick="return confirm('¿Seguro que deseas eliminar este cliente?')">Eliminar</a>
                             </td>
                         </tr>

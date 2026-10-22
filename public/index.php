@@ -12,12 +12,56 @@ $roles = $controller->roles(); */
 $method = $_SERVER['REQUEST_METHOD'];
 $uri = $_SERVER['REQUEST_URI'];
 
-
 $ruta = parse_url($uri, PHP_URL_PATH);
 
 if ($ruta === "/productos/editar" && $method === "GET") {
-    $productoC = new ProductoController();
-    $productoC->editar();
+    $productoController = new ProductoController();
+    $productoController->editar();
+}
+if ($ruta === "/productos/editar" && $method === "POST") {
+    $productoController = new ProductoController();
+    $productoController->editar();
+}
+if ($ruta === "/productos/actualizar" && $method === "GET") {
+    $productoController = new ProductoController();
+    $productoController->actualizar();
+}
+if ($ruta === "/productos/actualizar" && $method === "POST") {
+    $productoController = new ProductoController();
+    $productoController->actualizar();
+}
+
+if ($ruta === "/categorias/editar" && $method === "GET") {
+    $categoriaController = new CategoriaController();
+    $categoriaController->editar();
+}
+if ($ruta === "/categorias/actualizar" && $method === "POST") {
+    $categoriaController = new CategoriaController();
+    $categoriaController->actualizar();
+}
+if ($ruta === "/clientes/editar" && $method === "GET") {
+    $clienteController = new ClienteController();
+    $clienteController->editar();
+}
+if ($ruta === "/clientes/actualizar" && $method === "POST") {
+    $clienteController = new ClienteController();
+    $clienteController->actualizar();
+}
+if ($ruta === "/usuarios/editar" && $method === "GET") {
+    $usuarioController = new UsuarioController();
+    $usuarioController->editar();
+}
+if ($ruta === "/usuarios/actualizar" && $method === "POST") {
+    $usuarioController = new UsuarioController();
+    $usuarioController->actualizar();
+}
+if ($ruta === "/ventas/editar" && $method === "GET") {
+    $ventaController = new VentaController();
+    $ventaController->editar();
+}
+if ($ruta === "/ventas/actualizar" && $method === "POST") {
+    $ventaController = new VentaController();
+    $ventaController->actualizar();
 }
 
 

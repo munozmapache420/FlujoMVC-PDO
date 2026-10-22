@@ -45,18 +45,65 @@ public function guardar($nombre, $descripcion, $categoria_id, $id_inventario, $p
         return $stmt->execute([':id' => $id]);
     }
     public function getById($id)
-    {
-        try {
-            $sql = "SELECT * FROM producto WHERE id = :id LIMIT 1";
-            $stmt = $this->conn->prepare($sql);
-            $stmt->execute([':id' => $id]);
-        
-            return $stmt->fetch(PDO::FETCH_ASSOC);
-            
-        } catch (PDOException $e) {
-            echo "Error al buscar el PRODUCTO con ID " . $id . " ERROR SQL: " . $e->getMessage();
-            return false;
-        }
+{
+    try {
+        $sql = "SELECT * FROM producto WHERE id = :id";
+
+        $consulta = $this->conn->prepare($sql);
+        $consulta->bindParam(':id', $id);
+        $consulta->execute();
+        return $consulta->fetch(PDO::FETCH_OBJ);
+
+    } catch (PDOException $e) {
+        echo "Error al buscar el PRODUCTO con ID: " . $e->getMessage();
     }
+}
+
+public function actualizar(
+    $id,
+    $nombre,
+    $descripcion,
+    $categoria_id,
+    $id_inventario,
+    $stock_minimo,
+    $estado,
+    $precio_compra,
+    $precio_venta,
+    $stock
+) {
+    try {
+        $sql = "UPDATE producto SET
+                    nombre = :nombre,
+                    descripcion = :descripcion,
+                    categoria_id = :categoria_id,
+                    id_inventario = :id_inventario,
+                    stock_minimo = :stock_minimo,
+                    estado = :estado,
+                    precio_compra = :precio_compra,
+                    precio_venta = :precio_venta,
+                    stock = :stock
+                WHERE id = :id";
+
+        $stmt = $this->conn->prepare($sql);
+
+        return $stmt->execute([
+            ':id' => $id,
+            ':nombre' => $nombre,
+            ':descripcion' => $descripcion,
+            ':categoria_id' => $categoria_id,
+            ':id_inventario' => $id_inventario,
+            ':stock_minimo' => $stock_minimo,
+            ':estado' => $estado,
+            ':precio_compra' => $precio_compra,
+            ':precio_venta' => $precio_venta,
+            ':stock' => $stock
+        ]);
+
+    } catch (PDOException $e) {
+        echo "Error al actualizar el producto: " . $e->getMessage();
+        return false;
+    }
+}
+
 
 }
