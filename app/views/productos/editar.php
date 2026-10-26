@@ -15,23 +15,23 @@
     <div class="users-form">
         <form action="/productos/actualizar" method="POST" border="2" style="text-align: center;background-color:darkgray;">
 
-            <input type="hidden" name="id" value="<?= $producto->id ?>" style="background-color: lightgoldenrodyellow;"><br>
+            <input type="hidden" name="id" value="<?= $productos->id ?>" style="background-color: lightgoldenrodyellow;"><br>
 
             <label for="nombre">Nombre</label><br>
-            <input type="text" name="nombre" value="<?= $producto->nombre  ?>" required style="background-color: lightgoldenrodyellow;"> <br>
+            <input type="text" name="nombre" value="<?= $productos->nombre  ?>" required style="background-color: lightgoldenrodyellow;"> <br>
 
             <label for="descripcion">Descripción</label><br>
-            <input type="text" name="descripcion" value="<?= $producto->descripcion  ?>" style="background-color: lightgoldenrodyellow;"><br>
+            <input type="text" name="descripcion" value="<?= $productos->descripcion  ?>" style="background-color: lightgoldenrodyellow;"><br>
 
             <label for="categoria_id">Categoría (ID)</label><br>
-            <input type="number" id="categoria_id" name="categoria_id" value="<?= $producto->categoria_id ?>" required style="background-color: lightgoldenrodyellow;"><br>
+            <input type="number" id="categoria_id" name="categoria_id" value="<?= $productos->categoria_id ?>" required style="background-color: lightgoldenrodyellow;"><br>
 
             <label for="id_inventario">id_inventario</label><br>
-            <input type="text" name="id_inventario" value="<?= $producto->id_inventario ?>" style="background-color: lightgoldenrodyellow;"><br>
+            <input type="text" name="id_inventario" value="<?= $productos->id_inventario ?>" style="background-color: lightgoldenrodyellow;"><br>
 
 
             <label for="stock_minimo">Stock mínimo</label><br>
-            <input type="text" name="stock_minimo" value="<?= $producto->stock_minimo ?>" style="background-color: lightgoldenrodyellow;"><br>
+            <input type="text" name="stock_minimo" value="<?= $productos->stock_minimo ?>" style="background-color: lightgoldenrodyellow;"><br>
 
             <label for="estado:">estado</label><br>
             <select id="estado" name="estado" default="activo" style="background-color: lightblue;">
@@ -40,13 +40,13 @@
             </select><br>
 
             <label for="precio_compra">Precio de compra</label><br>
-            <input type="text" name="precio_compra" value="<?= $producto->precio_compra  ?>" required style="background-color:lightgoldenrodyellow"><br>
+            <input type="text" name="precio_compra" value="<?= $productos->precio_compra  ?>" required style="background-color:lightgoldenrodyellow"><br>
 
             <label for="precio_venta">precio_venta</label><br>
-            <input type="text" name="precio_venta" value="<?= $producto->precio_venta ?>" style="background-color: lightgoldenrodyellow;"><br>
+            <input type="text" name="precio_venta" value="<?= $productos->precio_venta ?>" style="background-color: lightgoldenrodyellow;"><br>
 
             <label for="stock">Stock</label><br>
-            <input type="text" name="stock" value="<?= $producto->stock  ?>" required style="background-color: lightgoldenrodyellow;"><br><br>
+            <input type="text" name="stock" value="<?= $productos->stock  ?>" required style="background-color: lightgoldenrodyellow;"><br><br>
 
             <section>
             <button type="submit" style="color: red;">Guardar cambios</button>

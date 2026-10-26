@@ -1,42 +1,61 @@
 <?php
 require_once __DIR__ . '/../models/Categoria.php';
 
-class CategoriaController {
+class CategoriaController
+{
     public $categoria;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->categoria = new Categoria();
     }
 
-public function index()
-{
-    $categorias = $this->categoria->getAll();
-    require_once __DIR__ . '/../views/categorias/index.php';
-}
+    public function index()
+    {
+        $categorias = $this->categoria->getAll();
+        require_once __DIR__ . '/../views/categorias/index.php';
+    }
 
 
-    public function crear() {
-     require_once __DIR__ . '/../views/categorias/crear.php';
+    public function crear()
+    {
+        require_once __DIR__ . '/../views/categorias/crear.php';
     }
 
     public function guardar()
-{
-    $nombre = $_POST['nombre'];
-    $descripcion = $_POST['descripcion'];
-    $precio = $_POST['precio'];
+    {
+        $nombre = $_POST['nombre'];
+        $descripcion = $_POST['descripcion'];
+        $precio = $_POST['precio'];
 
-    $categoria = new Categoria();
+        $categoria = new Categoria();
 
-    $resultado = $categoria->guardar($nombre, $descripcion, $precio);
-    if ($resultado) {
-        echo "categoria guardada correctamente";
-        $this->index();
-    } else {
-        echo "error al guardar la categoria";
+        $resultado = $categoria->guardar($nombre, $descripcion, $precio);
+        if ($resultado) {
+            echo "categoria guardada correctamente";
+            $this->index();
+        } else {
+            echo "error al guardar la categoria";
+        }
     }
-}
+    public function eliminar()
+    {
+        $id = $_POST['id'];
+        $categorias = $this->categoria->getById('id');
+        $categoria = new categoria();
 
-    public function editar() {
+        $resultado = $categoria->eliminar($id);
+        if ($resultado) {
+            echo "se ha eliminado correctamente";
+            $this->index();
+        } else {
+            echo "error al eliminar";
+        }
+        require_once __DIR__ . "/../views/categorias/eliminar.php";
+    }
+
+    public function editar()
+    {
 
         $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
@@ -55,7 +74,8 @@ public function index()
         require_once __DIR__ . '/../views/categorias/editar.php';
     }
 
-    public function actualizar() {
+    public function actualizar()
+    {
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -84,5 +104,4 @@ public function index()
             }
         }
     }
-
 }

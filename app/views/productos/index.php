@@ -142,6 +142,7 @@
 
                         <td>
                           <a href="/productos/editar?id=<?= $p['id'] ?>">editar</a>
+                          <a href="/productos/eliminar?id=<?= $p['id'] ?>"onclick=return" confirm('¿seguro que desea eliminar este producto?')">eliminar</a>
                         </td>
 
                     </tr>

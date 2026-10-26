@@ -96,5 +96,8 @@ public function guardar($nombre, $descripcion, $precio)
             return false;
         }
     }
+    public function eliminar($id){
+        $sql = "DELETE FROM categorias ";
+    }
 
 }

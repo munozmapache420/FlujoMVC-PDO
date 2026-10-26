@@ -22,7 +22,7 @@ class ProductoController {
 
     public function guardar() {
 
-        $nombre = $_POST['nombre'] ?? '';
+        $nombre = $_POST['nombre'] ?? 'mapache';
         $descripcion = $_POST['descripcion'] ?? '';
         $categoria_id = $_POST['categoria_id'] ?? null;
         $id_inventario = $_POST['id_inventario'] ?? null;
@@ -56,9 +56,9 @@ class ProductoController {
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $id = $_POST['id'] ?? null;
-            $nombre = $_POST['nombre'] ?? '';
-            $descripcion = $_POST['descripcion'] ?? '';
+            $id = $_POST['id'];
+            $nombre = $_POST['nombre'];
+            $descripcion = $_POST['descripcion'];
             $categoria_id = $_POST['categoria_id'] ?? null;
             $id_inventario = $_POST['id_inventario'] ?? null;
             $stock_minimo = $_POST['stock_minimo'] ?? 0;
@@ -94,24 +94,17 @@ class ProductoController {
         }
     }
 
-    public function editar() {
-
-        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
-
-        if (!$id) {
-            header('Location: /productos');
-            exit;
-        }
-
+    public function eliminar(){
+        $id =$_POST['id'];
         $producto = $this->producto->getById($id);
+        require_once __DIR__ . '/../views/productos/eliminar.php';
+    }
 
-        if (!$producto) {
-            echo "Producto no encontrado";
-            return;
-        }
-        require_once __DIR__ . '/../views/productos/editar.php';
-        $categorias = (new Categoria())->getAll();
-
+    public function editar() {
+    
+    $id = filter_input(INPUT_GET,'id',FILTER_VALIDATE_INT);
+    $id =$_GET['id'];
+    $productos= $this->producto->getById($id);
     require_once __DIR__ . '/../views/productos/editar.php';
     }
 }
