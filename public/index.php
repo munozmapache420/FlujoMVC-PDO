@@ -1,231 +1,187 @@
 <?php
-require_once __DIR__ . '/../app/controllers/UsuarioController.php';
-require_once __DIR__ . '/../app/controllers/productoController.php';
-require_once __DIR__ . '/../app/controllers/ventaController.php';
-require_once __DIR__ . '/../app/controllers/categoriaController.php';
-require_once __DIR__ . '/../app/controllers/clienteController.php';
+$frutas = ["manazana", "pera","mango"];
+echo "<h1>ALMACEN</h1>";
 
-/* $controller = new UsuarioController();
-$usuarios = $controller->index();
-$roles = $controller->roles(); */
+echo "<br>";
+echo $frutas[0];
 
-$method = $_SERVER['REQUEST_METHOD'];
-$uri = $_SERVER['REQUEST_URI'];
+echo "<br>";
 
-$ruta = parse_url($uri, PHP_URL_PATH);
+echo $frutas[2];
 
-if ($ruta === "/productos/editar" && $method === "GET") {
-    $productoController = new ProductoController();
-    $productoController->editar();
-}
-if ($ruta === "/productos/editar" && $method === "POST") {
-    $productoController = new ProductoController();
-    $productoController->editar();
-}
-if ($ruta === "/productos/actualizar" && $method === "GET") {
-    $productoController = new ProductoController();
-    $productoController->actualizar();
-}
-if ($ruta === "/productos/actualizar" && $method === "POST") {
-    $productoController = new ProductoController();
-    $productoController->actualizar();
-}
+echo "<h1>LENGUAJES</h1>";
 
-if ($ruta === "/categorias/editar" && $method === "GET") {
-    $categoriaController = new CategoriaController();
-    $categoriaController->editar();
-}
-if ($ruta === "/categorias/actualizar" && $method === "POST") {
-    $categoriaController = new CategoriaController();
-    $categoriaController->actualizar();
-}
-if ($ruta === "/clientes/editar" && $method === "GET") {
-    $clienteController = new ClienteController();
-    $clienteController->editar();
-}
-if ($ruta === "/clientes/actualizar" && $method === "POST") {
-    $clienteController = new ClienteController();
-    $clienteController->actualizar();
-}
-if ($ruta === "/usuarios/editar" && $method === "GET") {
-    $usuarioController = new UsuarioController();
-    $usuarioController->editar();
-}
-if ($ruta === "/usuarios/actualizar" && $method === "POST") {
-    $usuarioController = new UsuarioController();
-    $usuarioController->actualizar();
-}
-if ($ruta === "/ventas/editar" && $method === "GET") {
-    $ventaController = new VentaController();
-    $ventaController->editar();
-}
-if ($ruta === "/ventas/actualizar" && $method === "POST") {
-    $ventaController = new VentaController();
-    $ventaController->actualizar();
-}
+echo "<br>","<br>";
+
+$lenguajes = ["php", "python", "java", "c++","html"];
+
+echo $lenguajes[1];
+echo "<br>";
+echo $lenguajes[4];
+echo "<br>";
+echo $lenguajes[0];
+
+echo "<br>";
+
+echo "<h1>CATREGORIA DE LAS TIENDAS</h1>";
+
+$categorias_tienda=["Alimentos no perecederos", "bebidas", "alimentos pedecederos"];
+echo "<br>";
+echo $categorias_tienda[1];
+echo "<br>";
+echo "<br>";
+
+echo "<h1>PARTE 2 ASOCIATIVOS </h1>";
+echo "<br>";
+
+$producto = [ 
+    "nombre" => "Mouse", 
+    "precio" => 35000, 
+    "stock" => 12 
+    ]; 
+    
+    echo $producto["nombre"]; 
+    echo "<br>"; 
+    echo $producto["precio"]; 
+
+    echo "<h1>ESTUDIANTE</h1>";
+$estudiante =[
+    "nombre" => "huber uMapache",
+    "ficha" => 3230905,
+    "edad" => 21
+];
+echo $estudiante["nombre"];
+echo "<br>"; 
+echo $estudiante["ficha"];
+echo "<br>"; 
+echo $estudiante["edad"];
+echo "<br>"; 
+echo "<h1>PROVEEDOR DE TIENDA </h1>";
+echo "<br>"; 
+$proveedor=[
+    "nombre"=>"mapache el proveedor",
+    "ciudad"=>"La Dorada C.",
+    "teléfono"=> 3123598868,
+    "correo electrónico." =>"munozmapache420@gmail.com"
+];
+echo $proveedor["nombre"];
+echo "<br>"; 
+echo $proveedor["ciudad"];
+
+echo "<br>"; 
+echo "<h1>PARTE 3 </h1>";
+echo "<br>"; 
+echo "<h1>TIENDA </h1>";
+"nombre, precio y cantidad;";
+$tienda=[
+    "nombre"=>"sal",
+    "precio"=>2000,
+    "cantidad"=> 22
+];
+$tienda["precio"]=1500;
+$tienda["categoria"]="comida no pedecedera";
+echo $tienda["nombre"]; 
+echo "<br>"; 
+echo $tienda["precio"];
+echo "<br>";
+echo $tienda["categoria"]; 
 
 
+echo "<h1>COMPUTADORES </h1>";
 
-if ($method === 'GET' && $uri === '/productos') {
+$computadores = ["lenovo", "apple", "hp"];
 
-    $productoController = new productoController();
-    $productoController->index();
 
-}
+$computadores[] = "dell";
+$computadores[] = "asus";
 
-if ($method === 'GET' && $uri === '/usuarios') {
+echo $computadores[0] . "<br>";
+echo $computadores[1] . "<br>";
+echo $computadores[2] . "<br>";
+echo $computadores[3] . "<br>";
+echo $computadores[4] . "<br>";
 
-    $usuarioController = new UsuarioController();
-    $usuarioController->index();
 
-}
+echo "<h1>PARTE 4 </h1>";
+echo "<br>";
+echo "<h1>productos combinados</h1>";
 
-if ($method === 'GET' && $uri === '/categorias') {
+$productos=[
+    ["nombre"=>"PLay station",
+    "precio"=>5000000,
+    "cantidad"=>22],
+    ["nombre"=>"xbox",
+    "precio"=>4000000,
+    "cantidad"=>12],
+    ["nombre"=>"nintendo switch",
+    "precio"=>13000000,
+    "cantidad"=>10]
+];
+echo $productos[1]["nombre"];
+echo "<br>";
+echo $productos[2]["precio"];
+echo "<br>";
+echo $productos[0]["cantidad"];
+echo "<br>";
 
-    $categoriaController = new categoriaController();
-    $categoriaController->index();
+echo "<h1>instructor</h1>";
 
-}
+$if_aprendices=[
+    ["nombre"=>"mapache",
+    "ficha"=>3230905,
+    "programa de formación."=>"ADSO"],
+    ["nombre"=>"Uribe",
+    "ficha"=>3238868,
+    "programa de formación."=>"FIT"],
+    ["nombre"=>"petro",
+    "ficha"=>3221222,
+    "programa de formación."=>"CYPA"],
+];
+echo $if_aprendices[2]["nombre"];
+echo "<br>";
+echo $if_aprendices[0]["ficha"];
 
-if ($method === 'GET' && $uri === '/ventas') {
+echo "<h1>parte 5</h1>";
+$producto = [ 
+    "nombre" => "Monitor", 
+    "precio" => 750000, 
+    "proveedor" => [ "nombre" => "Tecnología SAS", 
+    "ciudad" => "Bogotá" 
+    ]
+    ];
+    echo $producto["nombre"]; 
+    echo "<br>"; 
+    echo $producto["proveedor"]["nombre"]; 
+    echo "<br>"; 
+echo $producto["proveedor"]["ciudad"]; 
 
-    $ventaController = new ventaController();
-    $ventaController->index();
+echo "<h1>aprendices</h1>";
+$aprendizes= [
+    "nombre" => "Huber",
+    "edad" => 20,
 
-}
-if ($method === 'GET' && $uri === '/clientes') {
+    "contacto" => [
+        "correo" => "huber@gmail.com",
+        "telefono" => "3001234567"
+    ]
+];
 
-    $clienteController= new clienteController();
-    $clienteController->index();
+echo "Nombre: " . $aprendizes["nombre"] . "<br>";
+echo "Correo: " . $aprendizes["contacto"]["correo"];
 
-}
-if ($method === 'GET' && $uri === '/productos/crear'){
-    $productoController = new productoController();
-    $productoController->crear();
-}
+echo "<h1>almacen</h1>";
+$producto = [
+    "nombre" => "Computador Lenovo",
+    "precio" => 2500000,
 
-if ($method === 'POST' && $uri === '/productos'){
-    $productoController = new productoController();
-    $productoController->guardar();
-}
-if ($method === 'GET' && $uri === '/categorias/crear'){
-    $categoriaController = new categoriaController();
-    $categoriaController->crear();
-}
-if ($method === 'POST' && $uri === '/categorias'){
-    $categoriaController = new categoriaController();
-    $categoriaController->guardar();
-}
-if ($method === 'GET' && $uri === '/usuarios/crear'){
-    $usuarioController = new UsuarioController();
-    $usuarioController->crear();
-}
-if ($method === 'POST' && $uri === '/usuarios'){
-    $usuarioController = new UsuarioController();
-    $usuarioController->guardar();
-}
-if ($method === 'GET' && $uri === '/ventas/crear'){
-    $ventaController = new VentaController();
-    $ventaController->crear();
-}
-if ($method === 'POST' && $uri === '/ventas'){
-    $ventaController = new Venta();
-    $ventaController->guardar();
-}
+    "fabricante" => [
+        "nombre" => "Lenovo",
+        "pais" => "China"
+    ]
+];
+
+echo "Producto: " . $producto["nombre"] . "<br>";
+echo "País de origen: " . $producto["fabricante"]["pais"];
 
 ?>
-
-<a href="/productos">productos</a>
-<br>
-<a href="/usuarios">usuarios</a>
-<br>
-<a href="/categorias">categorias</a>
-<br>
-<a href="/clientes">clientes</a>
-<br>
-<a href="/ventas">ventas</a>
-<br>
-<a href="/productos/crear">creacionProductoBB</a>
-<br>
-<a href="/categorias/crear">creacionCategoria</a>
-<br>
-<a href="/usuarios/crear">creacionUsuario</a>
-<br>
-<a href="/ventas/crear">creacionVentas</a>
-
-
-
- <!-- <!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Moonshine · Gestión del Sistema</title>
-<link rel="stylesheet" href="../css/style.css">
-</head>
-<body> -->
-<!-- 
-<nav>
-    <a href="index.php"><strong>Usuarios</strong></a>
-    <a href="../app/views/productos/index.php">Productos</a>
-    <a href="../app/views/categorias/index.php">Categorías</a>
-    <a href="../app/views/clientes/index.php">Clientes</a>
-    <a href="../app/views/ventas/index.php">Ventas</a>
-</nav> -->
-
-<!-- <h1>Gestión de Usuarios</h1>
-
-<div class="users-form">
-    <form action="../app/views/usuarios/crear.php" method="POST">
-        <h2>Crear Usuario</h2>
-        <input type="text" name="nombre" placeholder="Nombre completo" required>
-        <input type="email" name="correo" placeholder="Correo electrónico" required>
-        <input type="password" name="password" placeholder="Contraseña" required>
-        <input type="text" name="cargo" placeholder="Cargo (opcional)">
-        <select name="rol_id" required>
-            <?php foreach ($roles as $r): ?>
-                <option value="<?= $r['id'] ?>"><?= ($r['nombre']) ?></option>
-            <?php endforeach; ?>
-        </select>
-        <input type="submit" value="Agregar Usuario">
-    </form>
-</div>
-
-<h2>Usuarios Registrados</h2>
-
-<div class="users-table">
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Correo</th>
-                <th>Cargo</th>
-                <th>Rol</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if (!empty($usuarios)): ?>
-                <?php foreach ($usuarios as $u): ?>
-                    <tr>
-                        <td><?= $u['id'] ?></td>
-                        <td><?= ($u['nombre']) ?></td>
-                        <td><?= ($u['correo']) ?></td>
-                        <td><?= ($u['cargo'] ?? '') ?></td>
-                        <td><?= ($u['rol_nombre'] ?? '') ?></td>
-                        <td>
-                            <a href="../app/views/usuarios/editar.php?id=<?= $u['id'] ?>" class="users-table--edit">Editar</a>
-                            <a href="../app/views/usuarios/eliminar.php?id=<?= $u['id'] ?>" class="users-table--delete" onclick="return confirm('¿Seguro que deseas eliminar este usuario?')">Eliminar</a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <tr><td colspan="6">No hay usuarios registrados.</td></tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
-</div>
-
-</body>
-</html> -->
+?>
