@@ -8,13 +8,70 @@ require_once __DIR__ . '/../app/controllers/clienteController.php';
 /* $controller = new UsuarioController();
 $usuarios = $controller->index();
 $roles = $controller->roles(); */
-
 $method = $_SERVER['REQUEST_METHOD'];
 $uri = $_SERVER['REQUEST_URI'];
-
 $ruta = parse_url($uri, PHP_URL_PATH);
 
+$metodo= $_SERVER['REQUEST_METHOD'];
+
+$uri = parse_url(
+    $_SERVER['REQUEST_URI'],
+    PHP_URL_PATH
+);
+
+switch($ruta){
+    case"/productos/editar":
+        if($metodo === "GET"){
+        $productoController = new ProductoController();
+        $productoController->editar();
+        }
+    break;
+    case"/productos/editar":
+        if($metodo === "POST"){
+        $productoController = new ProductoController();
+        $productoController->editar();
+        }
+    break;
+
+    case"/productos/crear":
+        if($metodo === "GET"){
+        $productoController = new ProductoController();
+        $productoController->editar();
+        }
+    break;
+    case"/productos/crear":
+        if($metodo === "POST"){
+        $productoController = new ProductoController();
+        $productoController->editar();
+        }
+    break;
+    case"/productos/actualizar":
+        if($metodo === "GET"){
+    $productoController = new ProductoController();
+    $productoController->actualizar();
+        }
+    break;
+    case"/productos/actualizar":
+        if($metodo === "POST"){
+    $productoController = new ProductoController();
+    $productoController->actualizar();
+        }
+    break;
+
+    default:
+    echo "Ruta no encontrada";
+}
+
+
 if ($ruta === "/productos/editar" && $method === "GET") {
+    $productoController = new ProductoController();
+    $productoController->editar();
+}
+if ($ruta === "/productos/editar" && $method === "POST") {
+    $productoController = new ProductoController();
+    $productoController->editar();
+}
+if ($ruta === "/productos/editar" && $method === "POST") {
     $productoController = new ProductoController();
     $productoController->editar();
 }
@@ -29,6 +86,12 @@ if ($ruta === "/productos/actualizar" && $method === "GET") {
 if ($ruta === "/productos/actualizar" && $method === "POST") {
     $productoController = new ProductoController();
     $productoController->actualizar();
+}
+if ($method === 'GET' && $uri === '/productos') {
+
+    $productoController = new productoController();
+    $productoController->index();
+
 }
 
 if ($ruta === "/categorias/editar" && $method === "GET") {
@@ -66,12 +129,6 @@ if ($ruta === "/ventas/actualizar" && $method === "POST") {
 
 
 
-if ($method === 'GET' && $uri === '/productos') {
-
-    $productoController = new productoController();
-    $productoController->index();
-
-}
 
 if ($method === 'GET' && $uri === '/usuarios') {
 
@@ -155,77 +212,290 @@ if ($method === 'POST' && $uri === '/ventas'){
 
 
 
- <!-- <!DOCTYPE html>
-<html lang="es">
+  <!-- //////////////////////*// ejercicios extras //////////**///// */ -->
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Moonshine · Gestión del Sistema</title>
-<link rel="stylesheet" href="../css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
-<body> -->
-<!-- 
-<nav>
-    <a href="index.php"><strong>Usuarios</strong></a>
-    <a href="../app/views/productos/index.php">Productos</a>
-    <a href="../app/views/categorias/index.php">Categorías</a>
-    <a href="../app/views/clientes/index.php">Clientes</a>
-    <a href="../app/views/ventas/index.php">Ventas</a>
-</nav> -->
-
-<!-- <h1>Gestión de Usuarios</h1>
-
-<div class="users-form">
-    <form action="../app/views/usuarios/crear.php" method="POST">
-        <h2>Crear Usuario</h2>
-        <input type="text" name="nombre" placeholder="Nombre completo" required>
-        <input type="email" name="correo" placeholder="Correo electrónico" required>
-        <input type="password" name="password" placeholder="Contraseña" required>
-        <input type="text" name="cargo" placeholder="Cargo (opcional)">
-        <select name="rol_id" required>
-            <?php foreach ($roles as $r): ?>
-                <option value="<?= $r['id'] ?>"><?= ($r['nombre']) ?></option>
-            <?php endforeach; ?>
-        </select>
-        <input type="submit" value="Agregar Usuario">
-    </form>
-</div>
-
-<h2>Usuarios Registrados</h2>
-
-<div class="users-table">
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Correo</th>
-                <th>Cargo</th>
-                <th>Rol</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if (!empty($usuarios)): ?>
-                <?php foreach ($usuarios as $u): ?>
-                    <tr>
-                        <td><?= $u['id'] ?></td>
-                        <td><?= ($u['nombre']) ?></td>
-                        <td><?= ($u['correo']) ?></td>
-                        <td><?= ($u['cargo'] ?? '') ?></td>
-                        <td><?= ($u['rol_nombre'] ?? '') ?></td>
-                        <td>
-                            <a href="../app/views/usuarios/editar.php?id=<?= $u['id'] ?>" class="users-table--edit">Editar</a>
-                            <a href="../app/views/usuarios/eliminar.php?id=<?= $u['id'] ?>" class="users-table--delete" onclick="return confirm('¿Seguro que deseas eliminar este usuario?')">Eliminar</a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <tr><td colspan="6">No hay usuarios registrados.</td></tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
-</div>
-
+<body>
+          
+    <h1>Arreglos en PHP </h1> 
 </body>
-</html> -->
+</html>
+
+<?php
+
+
+echo "<h3>Ejercicio 1: Arreglo indexado de animales</h3>";
+$animales = ["perro", "gato", "loro"];
+echo "Primer animal: " . $animales[0] . "<br>";
+echo "Segundo animal: " . $animales[1] . "<br>";
+echo "Tercer animal: " . $animales[2] . "<br>";
+
+echo "<br><br>";
+
+echo "<h3>Ejercicio 2: Arreglo indexado de frutas</h3>";
+$frutas = [
+    "Manzana",
+    "Pera",
+    "Banano",
+    "Uva",
+    "Manzana"
+];
+echo "Fruta 1: " . $frutas[0] . "<br>";
+echo "Fruta 2: " . $frutas[1] . "<br>";
+echo "Fruta 3: " . $frutas[2] . "<br>";
+echo "Fruta 4: " . $frutas[3] . "<br>";
+echo "Fruta 5: " . $frutas[4] . "<br>";
+
+echo "<br><br>";
+
+echo "<h3>Ejercicio 3: Arreglo asociativo de tienda</h3>";
+$tienda = [
+    "Producto1" => "Jabon",
+    "Producto2" => "Arroz",
+    "Producto3" => "Shampoo",
+    "Producto4" => "Salchichon"
+];
+echo "Producto 1: " . $tienda["Producto1"] . "<br>";
+echo "Producto 2: " . $tienda["Producto2"] . "<br>";
+echo "Producto 3: " . $tienda["Producto3"] . "<br>";
+echo "Producto 4: " . $tienda["Producto4"] . "<br>";
+
+echo "<br><br>";
+
+echo "<h3>Ejercicio 4: Arreglo asociativo con arreglo interno </h3>";
+$productos = [
+    "Producto1" => [
+        "nombre" => "Mouse",
+        "precio" => 3500,
+        "stock"  => 10
+    ],
+    "Producto2" => [
+        "nombre" => "Teclado",
+        "precio" => 6000,
+        "stock"  => 15
+    ]
+];
+echo "Producto 1: " . $productos["Producto1"]["nombre"] . " | Precio: $" . $productos["Producto1"]["precio"] . " | Stock: " . $productos["Producto1"]["stock"] . "<br>";
+echo "Producto 2: " . $productos["Producto2"]["nombre"] . " | Precio: $" . $productos["Producto2"]["precio"] . " | Stock: " . $productos["Producto2"]["stock"] . "<br>";
+
+echo "<br><br>";
+
+echo "<h3>Ejercicio 5: Arreglo indexado con arreglos internos (Estudiantes)</h3>";
+$estudiantes = [
+    ["Ana", 20, "Ingenieria"],
+    ["Carlos", 22, "Medicina"],
+    ["Sofia", 19, "Derecho"]
+];
+echo "Estudiante 1: " . $estudiantes[0][0] . " | Edad: " . $estudiantes[0][1] . " | Carrera: " . $estudiantes[0][2] . "<br>";
+echo "Estudiante 2: " . $estudiantes[1][0] . " | Edad: " . $estudiantes[1][1] . " | Carrera: " . $estudiantes[1][2] . "<br>";
+echo "Estudiante 3: " . $estudiantes[2][0] . " | Edad: " . $estudiantes[2][1] . " | Carrera: " . $estudiantes[2][2] . "<br>";
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 style= color:red;>ejercicios 12/11/2026 alas 2:57 de la tarde </h1> 
+    <h1>ejemplo guiado 1 </h1> 
+</body>
+</html>
+
+<?php
+$opcion= 2;
+
+switch($opcion){
+    case 1: 
+        echo "Registrar producto";
+        break;
+    case 2:
+        echo "consultar productos";
+        break;
+    case 3:
+        echo "eliminar producto";
+        break;
+    default:
+    echo "opcion no valia";
+}
+echo "ejercicio practico 1";
+$diaSemana= 2;
+
+switch($diaSemana){
+    case 1: 
+        echo "Lunes";
+        break;
+    case 2:
+        echo "Martes";
+        break;
+    case 3:
+        echo "Miercoles";
+        break;
+    case 4:
+        echo "Jueves";
+        break;
+    case 5:
+        echo "Viernes";
+        break;
+    case 6:
+        echo "Sabado";
+        break;
+    case 7:
+        echo "Domingo";
+        break;
+
+    default:
+    echo "dia no valido";
+}
+
+echo "ejemplo guiado 2";
+
+$accion = "listar";
+
+if($accion === "crear") {
+    echo "formulario de crear";
+}elseif($accion === "listar") {
+    echo"Listado de productos";
+}elseif($accion === "eliminar"){
+    echo "eliminar producto";
+}else {
+    echo "Accion no encontrada";
+}
+
+$accion = "listar";  
+
+switch ($accion) {     
+    case "crear":         
+        echo "Formulario de creación";         
+        break;      
+    case "listar":         
+        echo "Listado de productos";         
+        break;      
+    case "eliminar":         
+        echo "Eliminar producto";         
+        break;      
+    default:         
+        echo "Acción no encontrada"; 
+}
+
+$inventario= 3;
+
+if($inventario === "registrar") {
+    echo "formulario de registrar";
+}elseif($accion === "consultar") {
+    echo"Listado de consultar";
+}elseif($accion === "Actualizacion"){
+    echo "actualizaste producto";
+}elseif($accion === "eliminar"){
+    echo "eliminar producto";
+}else {
+    echo "Accion no encontrada";
+}
+
+switch ($inventario) {     
+    case "registrar":         
+        echo "Formulario de registrara";         
+        break;      
+    case "consultar":         
+        echo "Listado de consultar";         
+        break;      
+    case "actualizacion":         
+        echo "actualizacion";         
+        break;      
+    case "eliminar":         
+        echo "producto eliminado";         
+        break;      
+    default:         
+        echo "Acción no encontrada"; 
+}
+
+echo "ejemplo guiado 3";
+
+$metodo = $_SERVER['REQUEST_METHOD'];
+
+$uri= parse_url(
+    $_SERVER['REQUEST_URI'],
+    PHP_URL_PATH
+);
+
+echo "Metodo HTTP: ". $metodo;
+echo "<br>";
+echo"ruta solicitada: ". $uri;
+
+echo "<h3 style=color:red> ejemplo 4 </h3>";
+
+$metodo= $_SERVER['REQUEST_METHOD'];
+
+$uri = parse_url(
+    $_SERVER['REQUEST_URI'],
+    PHP_URL_PATH
+);
+
+switch($uri){
+    case"/productos":
+        if($metodo === "GET"){
+            echo "Listado de productos";
+        }
+    break;
+
+    case"/productos/crear":
+        if($metodo === "GET"){
+            echo "formulario de creacion";
+        }
+    break;
+
+    case"/productos/guardar":
+
+        if($metodo ==="POST"){
+            echo "procesando registro del producto";
+        }
+    break;
+
+    default:
+    echo "Ruta no encontrada";
+}
+
+echo "<h3 style=color:red> ejercicio practico 3</h3>";
+
+$metodo= $_SERVER['REQUEST_METHOD'];
+
+$uri = parse_url(
+    $_SERVER['REQUEST_URI'],
+    PHP_URL_PATH
+);
+
+switch($uri){
+    case"/proovedores":
+        if($metodo === "GET"){
+            echo "Listado de proovedores";
+        }
+    break;
+
+    case"/proovedores/crear":
+        if($metodo === "GET"){
+            echo "formulario de creacion";
+        }
+    break;
+
+    case"/proovedores/guardar":
+
+        if($metodo ==="POST"){
+            echo "procesando registro del proovedores";
+        }
+    break;
+
+    default:
+    echo "Ruta no encontrada";
+}
+
+
+
+?>

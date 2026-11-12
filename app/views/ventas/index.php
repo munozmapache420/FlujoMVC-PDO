@@ -98,12 +98,10 @@
                                     Editar
                                 </a>
 
-                                <a
-                                    href="eliminar.php?id=<?= $v['id'] ?>"
-                                    class="users-table--delete"
-                                    onclick="return confirm('¿Seguro que deseas eliminar esta venta?')">
-                                    Eliminar
-                                </a>
+                             <a href="">
+                            <form action="/ventas/eliminar" method="post" onsubmit="return confirm('¿estas seguro de eliminar este producto?')">
+                            <button type="submit">eliminar</button>
+                            </a>
 
                             </td>
 

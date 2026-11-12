@@ -142,7 +142,11 @@
 
                         <td>
                           <a href="/productos/editar?id=<?= $p['id'] ?>">editar</a>
-                          <a href="/productos/eliminar?id=<?= $p['id'] ?>"onclick=return" confirm('¿seguro que desea eliminar este producto?')">eliminar</a>
+                             <a href="">
+                            <form action="/productos/eliminar" method="post" onsubmit="return confirm('¿estas seguro de eliminar este producto?')">
+                            <button type="submit">eliminar</button>
+                            </a> 
+    </form>
                         </td>
 
                     </tr>

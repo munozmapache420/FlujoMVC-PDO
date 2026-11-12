@@ -129,12 +129,9 @@
                                 Editar
                             </a>
 
-                            <a
-                                href="eliminar.php?id=<?= $u['id'] ?>"
-                                class="users-table--delete"
-                                onclick="return confirm('¿Seguro que deseas eliminar este usuario?')"
-                            >
-                                Eliminar
+                             <a href="">
+                            <form action="/usuarios/eliminar" method="post" onsubmit="return confirm('¿estas seguro de eliminar este producto?')">
+                            <button type="submit">eliminar</button>
                             </a>
 
                         </td>
