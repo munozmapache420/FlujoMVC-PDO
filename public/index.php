@@ -12,49 +12,82 @@ $method = $_SERVER['REQUEST_METHOD'];
 $uri = $_SERVER['REQUEST_URI'];
 $ruta = parse_url($uri, PHP_URL_PATH);
 
-$metodo= $_SERVER['REQUEST_METHOD'];
-
-$uri = parse_url(
-    $_SERVER['REQUEST_URI'],
-    PHP_URL_PATH
-);
 
 switch($ruta){
-    case"/productos/editar":
-        if($metodo === "GET"){
+    case'/productos/editar':
+        if($method === "GET"){
         $productoController = new ProductoController();
         $productoController->editar();
         }
     break;
-    case"/productos/editar":
-        if($metodo === "POST"){
+    case'/productos':
+        if($method === "GET"){
+        $productoController = new ProductoController();
+        $productoController->index();
+        }elseif($method === "POST"){
         $productoController = new ProductoController();
         $productoController->editar();
+        }
+    break;
+    case'/productos/crear':
+        if($method === "GET"){
+        $productoController = new ProductoController();
+        $productoController->editar();
+        }elseif($method === "POST"){
+        $productoController = new ProductoController();
+        $productoController->editar();
+        }
+    break;
+    case'/productos/actualizar':
+        if($method === "GET"){
+    $productoController = new ProductoController();
+    $productoController->actualizar();
+        }elseif($method === "POST"){
+    $productoController = new ProductoController();
+    $productoController->actualizar();
+        }
+    break;
+    case'/categorias/editar':
+        if($method === "POST") {
+            $categoriaController = new productoController();
+            $categoriaController->editar();
+        }elseif($method === "POST"){
+            $categoriaController = new categoriaController();
+            $categoriaController->editar();
+        }
+    break;
+    case'/categorias':
+        if($method === "GET") {
+            $categoriaController = new productoController();
+            $categoriaController->index();
+        }
+    break;
+    case'/categorias/actualizar':
+        if($method === "GET") {
+            $categoriaController = new productoController();
+            $categoriaController->editar();
+        }elseif($method === "POST") {
+            $categoriaController = new productoController();
+            $categoriaController->editar();
+        }
+    break;
+    case'/usuarios/editar':
+        if($method === "GET") {
+            $categoriaController = new productoController();
+            $categoriaController->editar();
+        }elseif($method === "POST") {
+            $categoriaController = new productoController();
+            $categoriaController->editar();
         }
     break;
 
-    case"/productos/crear":
-        if($metodo === "GET"){
-        $productoController = new ProductoController();
-        $productoController->editar();
-        }
-    break;
-    case"/productos/crear":
-        if($metodo === "POST"){
-        $productoController = new ProductoController();
-        $productoController->editar();
-        }
-    break;
-    case"/productos/actualizar":
-        if($metodo === "GET"){
-    $productoController = new ProductoController();
-    $productoController->actualizar();
-        }
-    break;
-    case"/productos/actualizar":
-        if($metodo === "POST"){
-    $productoController = new ProductoController();
-    $productoController->actualizar();
+    case'/usuarios/actualizar':
+        if($method === "GET") {
+            $categoriaController = new productoController();
+            $categoriaController->editar();
+        }elseif($method === "POST") {
+            $categoriaController = new productoController();
+            $categoriaController->editar();
         }
     break;
 

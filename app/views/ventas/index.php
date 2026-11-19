@@ -99,7 +99,7 @@
                                 </a>
 
                              <a href="">
-                            <form action="/ventas/eliminar" method="post" onsubmit="return confirm('¿estas seguro de eliminar este producto?')">
+                            <form action="/ventas/eliminar" method="post" onsubmit="return confirm('¿estas seguro de eliminar este producto?')"<?= $ventas["nombre"]?>>
                             <button type="submit">eliminar</button>
                             </a>
 
