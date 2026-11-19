@@ -82,7 +82,7 @@
                                 <?= $v['total'] ?>
                             </td>
 
-                            <td>
+                            <td
                                 <?= $v['cliente_id'] ?>
                             </td>
 
