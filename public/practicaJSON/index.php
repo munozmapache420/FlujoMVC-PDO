@@ -1,0 +1,81 @@
+<?php 
+echo "<h1 style=color:red;>JSON PRIMER EJERCICIO DE PHP A JSON</h1>". "</br>";
+
+echo"prueba php json";
+
+$producto = [ 
+    [
+    "id"=> 1,
+    "nombre" => "cafe",
+    "precio" => 35000,
+    "stock" => 20,
+    "disponibilidad"=> true
+],
+    [
+    "id"=> 2,
+    "nombre" => "leche",
+    "precio" => 5000,
+    "stock" => 20,
+    "disponibilidad"=> true
+],
+    [
+    "id"=> 3,
+    "nombre" => "azucar",
+    "precio" => 50000,
+    "stock" => 20,
+    "disponibilidad"=> true
+]
+
+];
+$producto[] = [
+    "id" => 4,
+    "nombre" => "arroz",
+    "precio" => 4000,
+    "stock" => 30,
+    "disponibilidad" => true
+];
+$json = json_encode($producto);
+echo $json . "</br>";
+
+///// parte 2
+echo "<h1 style=color:red;>ejercicio 2 DE JSON A PHP </h1>". "</br>";
+
+$json = file_get_contents(__DIR__ . "/productos.json",JSON_PRETTY_PRINT); 
+$productos = json_decode($json, true); 
+foreach ($productos as $producto){
+ echo "id: " . $producto["id"] . "</br>";
+ echo "nombre: " . $producto["nombre"] . "</br>"; 
+ echo "precio: " . $producto["precio"] . "</br>";
+ echo "stock: " . $producto["stock"] . "</br>";
+ echo "disponible: " . $producto["disponible"] . "</br>";
+ echo "categoria: " . $producto["categoria"] . "</br>";
+}
+"</br>";
+echo "<h1 style=color:red;>registro de productos mayores a 100k</h1>". "</br>";
+
+foreach( $productos as $producto) {
+    if ($producto['precio']> 100000){
+        echo "id: " . $producto["id"] . "</br>";
+        echo "nombre: " . $producto["nombre"] . "</br>";
+        echo "precio: " . $producto["precio"] . "</br>";
+    }
+}
+echo "<h1 style=color:red;>modificar y convertir informacion</h1>". "</br>";
+
+$productos = json_decode($json,true);
+$idBuscar= 2;
+foreach($productos as $indice=> $producto) {
+    if($producto["id"] === $idBuscar) {
+        $productos[$indice]["precio"]= 90000;
+        echo "producto modificado correctamente . </br>";
+}
+}
+
+$nuevoJson = json_encode($productos,JSON_PRETTY_PRINT);
+
+echo "<pre>";
+echo $nuevoJson;
+echo "<pre>";
+
+
+?>

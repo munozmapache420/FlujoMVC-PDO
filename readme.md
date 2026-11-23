@@ -16,3 +16,6 @@ se crea el formulario de editar producto con la estuctura mvc
 
 ## 22/10/2026
 se crea formularios de edicion o actualizacionde datos mediante la vida editar enlazandola con la estructura mvc
+
+### actualizacion de el dia 23/11/2026
+tabajamos es la estructura js y la conexion con php pasammos de php a json y de json a php
